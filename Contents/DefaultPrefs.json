@@ -1,0 +1,8 @@
+[
+	{
+		"id": "favoriseFirstsResults",
+		"label": "Favorise firsts results force",
+		"type": "text",
+		"default": 10
+	}
+]

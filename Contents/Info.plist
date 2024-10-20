@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIdentifier</key>
+	<string>com.plexapp.agents.filmweb</string>
+	<key>PlexAgentAttributionText</key>
+	<string>
+&lt;p&gt;
+  &lt;strong&gt;&lt;a href=&quot;https://www.filmweb.pl&quot; target=&quot;_blank&quot;&gt;Filmweb.pl&lt;/a&gt;&lt;/strong&gt; is the most popular free movie database in Poland. It provides extensive information about movies, actors, and directors, serving as a key resource for cinema enthusiasts. 
+&lt;/p&gt;
+&lt;p&gt;
+  Our Plex plugin allows users to directly utilize data from Filmweb, facilitating the organization and discovery of new film content in their library.
+&lt;/p&gt;
+
+	</string>
+	<key>PlexFrameworkVersion</key>
+	<string>2</string>
+	<key>PlexPluginClass</key>
+	<string>Agent</string>
+	<key>PlexPluginCodePolicy</key>
+	<string>Elevated</string>
+</dict>
+</plist>
