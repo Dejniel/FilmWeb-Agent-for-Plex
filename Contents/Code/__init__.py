@@ -14,6 +14,9 @@ class Utils:
             else:
                 result.append('%{0:02X}'.format(ord(char)))
         return ''.join(result)
+    @staticmethod
+    def remove_bbcode(text):
+        return re.sub(r'\[/?\w+.*?\]', '', text)
 
 class FilmWebApi:
     BASE_URL = "https://www.filmweb.pl/api/v1"
@@ -142,7 +145,7 @@ class FilmWebMedia():
         # Pobranie opisu
         description_data = FilmWebApi.get_description(metadata.id)
         if description_data:
-            self.set_metadata_value(metadata, 'summary', description_data.get('synopsis'))
+            self.set_metadata_value(metadata, 'summary', Utils.remove_bbcode(description_data.get('synopsis')))
 
         # Pobranie oceny użytkowników
         rating_data = FilmWebApi.get_rating(metadata.id)
@@ -160,7 +163,7 @@ class FilmWebMedia():
             self.set_metadata_value(metadata, 'title', preview_data.get('internationalTitle', {}).get('title'))
             self.set_metadata_value(metadata, 'original_title', preview_data.get('originalTitle', {}).get('title'))
             self.set_metadata_value(metadata, 'year', preview_data.get('year'))
-            self.set_metadata_value(metadata, 'tagline', preview_data.get('plotOrDescriptionSynopsis'))
+            self.set_metadata_value(metadata, 'tagline', Utils.remove_bbcode(preview_data.get('plotOrDescriptionSynopsis')))
             if 'poster' in preview_data and 'path' in preview_data['poster']:
                 poster = "https://fwcdn.pl/fpo" + preview_data['poster']['path']
                 if poster not in metadata.posters:
