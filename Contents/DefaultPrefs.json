@@ -1,8 +1,8 @@
 [
 	{
-		"id": "favoriseFirstsResults",
-		"label": "Favorise firsts results force",
+		"id": "excludedKeys",
+		"label": "Nazwy plików zawierające niepotrzebne słowa typu 'remastered' albo 'dubbing' bardzo mylą wyszukiwarkę filmweb. Wymień tu po przecinkach słowa które chcesz ignorować w nazwach plików.",
 		"type": "text",
-		"default": 10
+		"default": "dubbing,remastered"
 	}
 ]
