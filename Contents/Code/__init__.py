@@ -200,22 +200,26 @@ class FilmWebMedia:
                 poster = "https://fwcdn.pl/fpo" + preview_data['poster']['path']
                 if poster not in metadata.posters:
                     metadata.posters[poster] = Proxy.Preview(HTTP.Request(poster).content)
+
             if 'genres' in preview_data and not metadata.genres:
                 for genre in preview_data['genres']:
                     metadata.genres.add(genre.get('name', {}).get('text', ''))
                     Log("Added genre: %s" % genre['name']['text'])
+
             if 'directors' in preview_data and not metadata.directors:
                 for director in preview_data['directors']:
                     metadata.directors.add(director.get('name', ''))
                     Log("Added director: %s" % director['name'])
+
             if 'mainCast' in preview_data and not metadata.roles:
                 for cast_member in preview_data['mainCast']:
                     role = metadata.roles.new()
                     role.name = cast_member.get('name', '')
                     role.role = "Actor"
                     Log("Added cast member: %s as Actor" % cast_member['name'])
+
             if 'coverPhoto' in preview_data and 'photo' in preview_data['coverPhoto']:
-                cover_photo = "https://fwcdn.pl/fph" + preview_data['coverPhoto']['photo'].get('sourcePath', '').replace('$', '7')
+                cover_photo = "https://fwcdn.pl/fph" + preview_data['coverPhoto']['photo'].get('sourcePath', '').replace('$', '1')
                 if cover_photo not in metadata.art:
                     metadata.art[cover_photo] = Proxy.Preview(HTTP.Request(cover_photo).content)
 
