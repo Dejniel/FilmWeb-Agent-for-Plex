@@ -1,14 +1,18 @@
+import re
+from difflib import SequenceMatcher
+
 def Start():
     Log("FilmWebStandaloneAgent is starting up.")
-    
-from difflib import SequenceMatcher
 
 class Utils:
     @staticmethod
     def quote(s):
-        safe = "/:"  # Zdefiniuj, które znaki uważasz za bezpieczne
+        """
+        Encode a string for safe use in URLs.
+        """
+        safe = "/:"  # Define which characters are considered safe
         result = []
-        for char in list(s):  # Zmień string na listę, aby wymusić iterację
+        for char in list(s):  # Convert string to list for iteration
             if char.isalnum() or char in safe:
                 result.append(char)
             else:
@@ -16,6 +20,9 @@ class Utils:
         return ''.join(result)
     @staticmethod
     def remove_bbcode(text):
+        """
+        Remove BBCode tags from a given text.
+        """
         return re.sub(r'\[/?\w+.*?\]', '', text)
 
 class FilmWebApi:
@@ -29,6 +36,9 @@ class FilmWebApi:
 
     @staticmethod
     def get_api(url):
+        """
+        Perform an API request and return the response.
+        """
         headers = {'x-locale': 'pl_PL'}
         try:
             response = JSON.ObjectFromURL(url, headers=headers)
@@ -62,7 +72,7 @@ class FilmWebApi:
     @staticmethod
     def get_preview(film_id):
         return FilmWebApi.get_api(FilmWebApi.PREVIEW_URL % film_id)
-      
+
 class FilmWebFilmAgent(Agent.Movies):
     name = 'FilmWeb.pl'
     languages = [Locale.Language.Polish]
@@ -70,19 +80,24 @@ class FilmWebFilmAgent(Agent.Movies):
 
     def search(self, results, media, lang):
         FilmWebMedia.search(results, media, lang, "film")
+
     def update(self, metadata, media, lang):
         FilmWebMedia.update(metadata, media, lang)
 
-# TODO FilmWebSerialAgent(Agent.TV_Shows):
-      
-class FilmWebMedia():
+# TODO: Implement FilmWebSerialAgent(Agent.TV_Shows) for handling TV shows
+
+class FilmWebMedia:
     @staticmethod
     def search(results, media, lang, type):
+        """
+        Search for media on FilmWeb and append results to Plex.
+        """
         query = "%s %s" % (media.name, media.year) if media.year and str(media.year) not in media.name else media.name
         excluded_words = [x.strip() for x in Prefs['excludedKeys'].split(',')]
         query = ' '.join(w for w in query.split() if w not in excluded_words)
         query = Utils.quote(query)
-        # Wykonanie zapytania do API Filmweb w celu pobrania listy wyników
+        
+        # Perform search API request
         Log("Performing search with query: %s" % query)
         search_response = FilmWebApi.search(query)
         search_results = search_response.get("searchHits", []) if search_response else []
@@ -91,22 +106,24 @@ class FilmWebMedia():
             Log.Info("No search results found.")
             return 1
 
-        
         order_num = 0
 
-        for film_data in search_results if film_data.get("type") == type:
-            # Pobranie dodatkowych informacji o filmie na podstawie jego ID
+        for film_data in search_results:
+            if film_data.get("type") != type:
+                continue
+
+            # Fetch additional information about the film
             Log("Fetching film info for ID: %s" % film_data['id'])
             film_info = FilmWebApi.get_film_info(film_data['id'])
             Log("Fetching film: %s" % film_info)
             if film_info:
-                # Połączenie danych z wyszukiwania i dodatkowych informacji
+                # Merge search data with additional info
                 film_data.update(film_info)
 
-                # Obliczanie wyniku podobieństwa (score)
-                score = self.calculate_score(media, film_data, order_num)
+                # Calculate similarity score
+                score = FilmWebMedia.calculate_score(media, film_data, order_num)
 
-                # Dodanie wyniku do listy wyników wyszukiwania Plex
+                # Append result to Plex
                 results.Append(MetadataSearchResult(
                     id=str(film_data['id']),
                     name=film_data['title'],
@@ -117,8 +134,12 @@ class FilmWebMedia():
                 Log("Added search result: %s with score %s" % (film_data['title'], score))
 
                 order_num += 1
+
     @staticmethod
     def calculate_score(media, film_data, order_num):
+        """
+        Calculate similarity score between the provided media and search result.
+        """
         year_penalty = 0
         if media.year:
             year_penalty = abs(int(media.year) - film_data['year'])
@@ -126,44 +147,55 @@ class FilmWebMedia():
                 year_penalty = min(year_penalty, abs(int(media.year) - film_data['otherYear']))
             year_penalty = year_penalty * 4
         
-        # Obliczanie podobieństwa tytułu przy użyciu SequenceMatcher
+        # Calculate title similarity using SequenceMatcher
         similarity_score = SequenceMatcher(None, media.name.lower(), film_data['title'].lower()).ratio()
         if 'originalTitle' in film_data:
             similarity_score = max(similarity_score, SequenceMatcher(None, media.name.lower(), film_data['originalTitle'].lower()).ratio())
         similarity_score = similarity_score * 100
         return max(0, int(similarity_score) - year_penalty - (10 * order_num))
+
     @staticmethod
     def set_metadata_value(metadata, key, value):
+        """
+        Set metadata value if it is not already set.
+        """
         if value and not getattr(metadata, key):
             setattr(metadata, key, value)
             Log("Set metadata %s to %s" % (key, value))
+
     @staticmethod
     def update(metadata, media, lang):
-        # Logo filmweb przy ocenie
-        self.set_metadata_value(metadata, 'rating_image', R('filmweb_logo.png'))
+        """
+        Update metadata for the given media.
+        """
+        # Set rating image
+        #FilmWebMedia.set_metadata_value(metadata, 'rating_image', R('filmweb_logo.svg'))
+        FilmWebMedia.set_metadata_value(metadata, 'rating_image', 'https://fwcdn.pl/prt/static/images/logos/LogoFilmwebPL.svg')
+        
 
-        # Pobranie opisu
+        # Fetch and set description
         description_data = FilmWebApi.get_description(metadata.id)
         if description_data:
-            self.set_metadata_value(metadata, 'summary', Utils.remove_bbcode(description_data.get('synopsis')))
+            FilmWebMedia.set_metadata_value(metadata, 'summary', Utils.remove_bbcode(description_data.get('synopsis')))
 
-        # Pobranie oceny użytkowników
+        # Fetch and set audience rating
         rating_data = FilmWebApi.get_rating(metadata.id)
         if rating_data:
-            self.set_metadata_value(metadata, 'audience_rating', rating_data.get('rate'))
+            FilmWebMedia.set_metadata_value(metadata, 'audience_rating', rating_data.get('rate'))
 
-        # Pobranie oceny krytyków
+        # Fetch and set critics rating
         critics_rating_data = FilmWebApi.get_critics_rating(metadata.id)
         if critics_rating_data:
-            self.set_metadata_value(metadata, 'rating', critics_rating_data.get('rate'))
+            FilmWebMedia.set_metadata_value(metadata, 'rating', critics_rating_data.get('rate'))
 
-        # Pobranie dodatkowych informacji z podglądu
+        # Fetch and set additional preview data
         preview_data = FilmWebApi.get_preview(metadata.id)
         if preview_data:
-            self.set_metadata_value(metadata, 'title', preview_data.get('internationalTitle', {}).get('title'))
-            self.set_metadata_value(metadata, 'original_title', preview_data.get('originalTitle', {}).get('title'))
-            self.set_metadata_value(metadata, 'year', preview_data.get('year'))
-            self.set_metadata_value(metadata, 'tagline', Utils.remove_bbcode(preview_data.get('plotOrDescriptionSynopsis')))
+            FilmWebMedia.set_metadata_value(metadata, 'title', preview_data.get('internationalTitle', {}).get('title'))
+            FilmWebMedia.set_metadata_value(metadata, 'original_title', preview_data.get('originalTitle', {}).get('title'))
+            FilmWebMedia.set_metadata_value(metadata, 'year', preview_data.get('year'))
+            FilmWebMedia.set_metadata_value(metadata, 'tagline', Utils.remove_bbcode(preview_data.get('plotOrDescriptionSynopsis')))
+
             if 'poster' in preview_data and 'path' in preview_data['poster']:
                 poster = "https://fwcdn.pl/fpo" + preview_data['poster']['path']
                 if poster not in metadata.posters:
@@ -186,5 +218,6 @@ class FilmWebMedia():
                 cover_photo = "https://fwcdn.pl/fph" + preview_data['coverPhoto']['photo'].get('sourcePath', '').replace('$', '7')
                 if cover_photo not in metadata.art:
                     metadata.art[cover_photo] = Proxy.Preview(HTTP.Request(cover_photo).content)
-            self.set_metadata_value(metadata, 'duration', preview_data.get('duration'))
+
+            FilmWebMedia.set_metadata_value(metadata, 'duration', preview_data.get('duration'))
 
