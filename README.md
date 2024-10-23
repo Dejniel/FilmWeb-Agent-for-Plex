@@ -1,18 +1,24 @@
 # FilmWeb Standalone Agent for Plex
 
-> "Nigdy nie zrozumiem ocen na zagranicznych serwisach filmowych..."
+Many movies are rated differently in Poland than globally. This plugin integrates Plex with the Polish Filmweb, providing ratings that reflect local preferences
 
-Jeśli, jak ja, nie rozumiesz ocen na zagranicznych serwisach filmowych, ta wtyczka jest dla Ciebie! FilmWeb Standalone Agent umożliwia integrację ocen i metadanych z popularnego polskiego serwisu FilmWeb bez konieczności korzystania z zamkniętego API.&#x20;
+Są filmy, które oceniamy zupełnie inaczej w Polsce niż na świecie. Nie rozumiem, dlaczego nikt wcześniej (dobrze) nie zintegrował Plexa z polskim Filmwebem. Ale skoro tak, to ja to zrobiłem
 
-Zapraszam do korzystania i współtworzenia wtyczki. W razie pytań, uwag lub problemów, proszę o kontakt przez GitHub.
+**O projekcie**  
+Oceny polskiego serwisu Filmweb są diametralnie różne od ocen globalnych. Są ku temu niezliczone powody, np. jakość dubbingu w francuskich filmach, jak *Asterix i Obelix*, które nie są szeroko znane poza Polską i Francją
 
-Miłego oglądania! 🎬
+**Wyzwania**  
+- Wtyczka – ogromnym wkładem mojej pracy – korzysta z tego samego [publicznego API (JSON)](DOC_FILMWEB_API.md), co strona Filmwebu i nie wymaga autoryzacji
+- Ponieważ, jak wiadomo, [dokumentacja wtyczek Plexa](DOC_PLEX_PLUGINS.md) jest już zamknięta, także to wymagało wysiłku, aby zrozumieć poszczególne funkcje
 
-#O Projekcie
+**Potrzebujemy Ciebie!**  
+- Jeżeli uważasz, że mam rację – [wesprzyj moją pracę](link) i pomóż mi dalej rozwijać projekt!
+- Jeżeli jesteś programistą – nie ociągaj się z kontrybucją i zgłaszaniem błędów!
+
 
 ## Funkcje
 
-**Wyszukiwanie i pobieranie danych z FilmWeb**: Agent korzysta z dostępnego API AJAX, aby uprościć cały proces i pominąć zamknięte API FilmWeb oraz nie parsować strony. Niemniej może brakować szczegółowych metadanych.
+**Wyszukiwanie i pobieranie danych z FilmWeb**: Agent korzysta z dostępnego [API AJAX](DOC_FILMWEB_API.md), aby uprościć cały proces i pominąć zamknięte API FilmWeb oraz nie parsować strony. Niemniej może brakować szczegółowych metadanych.
 
 Pobierane są:
 
@@ -32,28 +38,19 @@ Metadane, których brakuje:
 
 ## Instalacja
 
-### Wymagania
+Instrukcja ręcznej instalacji wtyczki jest opisana na [stronie Plexa](https://support.plex.tv/articles/201187656-how-do-i-manually-install-a-plugin/). Nie ma możliwości instalacji wtyczek w inny sposób ponieważ Plex [wycował się z nich](https://forums.plex.tv/t/discontinuation-of-plugins-watch-later-recommended-and-cloud-sync/312312) pod naciskiem korporacji Copyrightowych. Na tą chwilę wtyczka sama sprawdza czy istnieje nowsza wersja, być może wprowadzę w przyszłości jakiś self-updater
 
-- Plex Media Server z możliwością dodawania wtyczek.
-- Python w wersji 3.8 lub wyższej.
+### W skrócie
 
-### Krok po kroku
-
-1. **Pobierz kod źródłowy**: Skopiuj repozytorium lub pliki projektu do katalogu wtyczek Plex.
-2. **Umieść w katalogu wtyczek Plex**:
-   - Dla systemu Linux: `/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-ins/`
-   - Dla Windows: `%LOCALAPPDATA%\Plex Media Server\Plug-ins\`
+1. **Pobierz kod źródłowy**: Skopiuj repozytorium lub pliki projektu do katalogu o nazwie kończącej się na ".bundle"
+2. **Umieść w katalogu wtyczek Plex**: Umieść folder z wtyczką w folderze `Plex Media Server\Plug-ins`
 3. **Uruchom ponownie Plex**: Po umieszczeniu wtyczki w odpowiednim folderze, uruchom ponownie serwer Plex Media Server.
-4. **Konfiguracja**:
-   - Wejdź w ustawienia Plexa, wybierz zarządzanie agentami i ustaw `FilmWeb.pl` jako główne źródło metadanych dla filmów i seriali.
+4. **Konfiguracja**: Wejdź w ustawienia Plexa, wybierz zarządzanie agentami i ustaw `FilmWeb.pl` jako główne źródło metadanych dla filmów i seriali.
 
-## Użycie
+### Użycie
 
 Po skonfigurowaniu agenta, każdy nowy film lub serial będzie automatycznie wzbogacany o metadane z FilmWeb. Możesz także ręcznie wybrać opcję „Uaktualnij” dla poszczególnych pozycji w bibliotece, aby pobrać najnowsze informacje.
 
-## Znane problemy i ograniczenia
+## Pomysły
 
-- **Brak wsparcia dla zamkniętego API**: Wtyczka korzysta wyłącznie z dostępnego API AJAX, co oznacza, że niektóre funkcje dostępne w oficjalnym API mogą być pominięte.
-- **Porównywanie tytułów**: Pomimo zastosowania `SequenceMatcher`, w niektórych przypadkach tytuły mogą nie zostać idealnie dopasowane, szczególnie jeśli różnice w tytułach są znaczące.
-
-
+Wszytkie pomysły i braki zebrane są w [TODO.md](TODO.md)
