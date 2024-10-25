@@ -130,6 +130,8 @@ class FilmWebMedia:
                     id=str(film_data['id']),
                     name=film_data['title'],
                     year=film_data['year'],
+                    # TODO why doesnt work?
+                    # thumb="https://fwcdn.pl/fpo" + film_data['posterPath'].replace('$', '1') if 'posterPath' in film_data else None,
                     score=score,
                     lang=lang
                 ))
