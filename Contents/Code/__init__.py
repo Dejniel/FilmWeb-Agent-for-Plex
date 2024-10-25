@@ -203,7 +203,7 @@ class FilmWebMedia:
             FilmWebMedia.set_metadata_value(metadata, 'tagline', Utils.remove_bbcode(preview_data.get('plotOrDescriptionSynopsis')))
 
             if 'poster' in preview_data and 'path' in preview_data['poster']:
-                poster = "https://fwcdn.pl/fpo" + preview_data['poster']['path']
+                poster = "https://fwcdn.pl/fpo" + preview_data['poster']['path'].replace('$', '3')
                 if poster not in metadata.posters:
                     metadata.posters[poster] = Proxy.Preview(HTTP.Request(poster).content)
 
