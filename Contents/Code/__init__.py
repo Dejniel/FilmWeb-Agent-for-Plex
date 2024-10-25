@@ -92,9 +92,11 @@ class FilmWebMedia:
         """
         Search for media on FilmWeb and append results to Plex.
         """
-        query = "%s %s" % (media.name, media.year) if media.year and str(media.year) not in media.name else media.name
-        excluded_words = [x.strip() for x in Prefs['excludedKeys'].split(',')]
-        query = ' '.join(w for w in query.split() if w not in excluded_words)
+        
+        excluded_words = [x.strip().lower() for x in Prefs['excludedKeys'].split(',')] + [str(media.year)]
+        query = ' '.join(w for w in media.name.split() if w.lower() not in excluded_words)
+        query_name = query
+        query = "%s %s" % (query, media.year) if media.year else query
         query = Utils.quote(query)
         
         # Perform search API request
@@ -121,7 +123,7 @@ class FilmWebMedia:
                 film_data.update(film_info)
 
                 # Calculate similarity score
-                score = FilmWebMedia.calculate_score(media, film_data, order_num)
+                score = FilmWebMedia.calculate_score(query_name, media, film_data, order_num)
 
                 # Append result to Plex
                 results.Append(MetadataSearchResult(
@@ -136,7 +138,7 @@ class FilmWebMedia:
                 order_num += 1
 
     @staticmethod
-    def calculate_score(media, film_data, order_num):
+    def calculate_score(name, media, film_data, order_num):
         """
         Calculate similarity score between the provided media and search result.
         """
@@ -148,11 +150,12 @@ class FilmWebMedia:
             year_penalty = year_penalty * 4
         
         # Calculate title similarity using SequenceMatcher
-        similarity_score = SequenceMatcher(None, media.name.lower(), film_data['title'].lower()).ratio()
+        similarity_score = SequenceMatcher(None, name.lower(), film_data['title'].lower()).ratio()
         if 'originalTitle' in film_data:
-            similarity_score = max(similarity_score, SequenceMatcher(None, media.name.lower(), film_data['originalTitle'].lower()).ratio())
+            similarity_score = max(similarity_score, SequenceMatcher(None, name.lower(), film_data['originalTitle'].lower()).ratio())
         similarity_score = similarity_score * 100
-        return max(0, int(similarity_score) - year_penalty - (10 * order_num))
+        order_num = order_num - 1 if order_num <=0 else order_num
+        return max(0, 10 + int(similarity_score) - year_penalty - (10 * order_num))
 
     @staticmethod
     def set_metadata_value(metadata, key, value):
