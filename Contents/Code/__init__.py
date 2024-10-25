@@ -168,11 +168,7 @@ class FilmWebMedia:
         """
         Update metadata for the given media.
         """
-        # Set rating image
-        #FilmWebMedia.set_metadata_value(metadata, 'rating_image', R('filmweb_logo.svg'))
-        FilmWebMedia.set_metadata_value(metadata, 'rating_image', 'https://fwcdn.pl/prt/static/images/logos/LogoFilmwebPL.svg')
         
-
         # Fetch and set description
         description_data = FilmWebApi.get_description(metadata.id)
         if description_data:
@@ -182,11 +178,16 @@ class FilmWebMedia:
         rating_data = FilmWebApi.get_rating(metadata.id)
         if rating_data:
             FilmWebMedia.set_metadata_value(metadata, 'audience_rating', rating_data.get('rate'))
+            # Only predefind icons works!
+            # Only way to display both audience and critics rating is to set rottentomatoes icons (lol)!
+            FilmWebMedia.set_metadata_value(metadata, 'audience_rating_image', 'rottentomatoes://image.rating.upright')
 
         # Fetch and set critics rating
         critics_rating_data = FilmWebApi.get_critics_rating(metadata.id)
         if critics_rating_data:
             FilmWebMedia.set_metadata_value(metadata, 'rating', critics_rating_data.get('rate'))
+            FilmWebMedia.set_metadata_value(metadata, 'rating_count', critics_rating_data.get('count'))
+            FilmWebMedia.set_metadata_value(metadata, 'rating_image', 'rottentomatoes://image.rating.ripe')
 
         # Fetch and set additional preview data
         preview_data = FilmWebApi.get_preview(metadata.id)

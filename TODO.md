@@ -4,7 +4,6 @@
 
 
 - zrob agenta seriali
-- napraw ikone ocen filmweb
 - NAPRAW AUDIECE RATING - chyba je zamien
 - plakaty przy wyszukiwaniu
 - sprawdzanie czy nie ma update
