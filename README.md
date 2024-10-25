@@ -36,6 +36,8 @@ Metadane, których brakuje:
 - Producenci
 - Dodatkowe multimedia (np. inne plakaty, zwiastuny)
 
+Plex także ogranicza ustawinie innych, niż zdefinowane przez nich, ikonek. Stąd nie mogę nigdzie umieścić loga FilmWebu.
+
 ## Instalacja
 
 Instrukcja ręcznej instalacji wtyczki jest opisana na [stronie Plexa](https://support.plex.tv/articles/201187656-how-do-i-manually-install-a-plugin/). Nie ma możliwości instalacji wtyczek w inny sposób ponieważ Plex [wycował się z nich](https://forums.plex.tv/t/discontinuation-of-plugins-watch-later-recommended-and-cloud-sync/312312) pod naciskiem korporacji Copyrightowych. Na tą chwilę wtyczka sama sprawdza czy istnieje nowsza wersja, być może wprowadzę w przyszłości jakiś self-updater
