@@ -4,10 +4,10 @@ Many movies are rated differently in Poland than globally. This plugin integrate
 
 Są filmy, które oceniamy zupełnie inaczej w Polsce niż na świecie. Nie rozumiem, dlaczego nikt wcześniej (dobrze) nie zintegrował Plexa z polskim Filmwebem. Ale skoro tak, to ja to zrobiłem
 
-**O projekcie**  
+**O projekcie**
 Oceny polskiego serwisu Filmweb są diametralnie różne od ocen globalnych. Są ku temu niezliczone powody, np. jakość dubbingu w francuskich filmach, jak *Asterix i Obelix*, które nie są szeroko znane poza Polską i Francją
 
-**Wyzwania**  
+**Wyzwania**
 - Wtyczka – ogromnym wkładem mojej pracy – korzysta z tego samego [publicznego API (JSON)](DOC_FILMWEB_API.md), co strona Filmwebu i nie wymaga autoryzacji
 - Ponieważ, jak wiadomo, [dokumentacja wtyczek Plexa](DOC_PLEX_PLUGINS.md) jest już zamknięta, także to wymagało wysiłku, aby zrozumieć poszczególne funkcje
 
@@ -40,7 +40,7 @@ Plex także ogranicza ustawinie innych, niż zdefinowane przez nich, ikonek. St�
 
 ## Instalacja
 
-Instrukcja ręcznej instalacji wtyczki jest opisana na [stronie Plexa](https://support.plex.tv/articles/201187656-how-do-i-manually-install-a-plugin/). Nie ma możliwości instalacji wtyczek w inny sposób ponieważ Plex [wycował się z nich](https://forums.plex.tv/t/discontinuation-of-plugins-watch-later-recommended-and-cloud-sync/312312) pod naciskiem korporacji Copyrightowych. Na tą chwilę wtyczka sama sprawdza czy istnieje nowsza wersja, być może wprowadzę w przyszłości jakiś self-updater
+Instrukcja ręcznej instalacji wtyczki jest opisana na [stronie Plexa](https://support.plex.tv/articles/201187656-how-do-i-manually-install-a-plugin/). Nie ma możliwości instalacji wtyczek w inny sposób ponieważ Plex [wycował się z nich](https://forums.plex.tv/t/discontinuation-of-plugins-watch-later-recommended-and-cloud-sync/312312) pod naciskiem korporacji Copyrightowych.
 
 ### W skrócie
 
@@ -51,7 +51,7 @@ Instrukcja ręcznej instalacji wtyczki jest opisana na [stronie Plexa](https://s
 
 ### Użycie
 
-Po skonfigurowaniu agenta, każdy nowy film lub serial będzie automatycznie wzbogacany o metadane z FilmWeb. Możesz także ręcznie wybrać opcję „Uaktualnij” dla poszczególnych pozycji w bibliotece, aby pobrać najnowsze informacje.
+Po skonfigurowaniu agenta, każdy nowy film lub serial będzie automatycznie wzbogacany o metadane z FilmWeb. Możesz także ręcznie wybrać opcję „Odświerz” dla poszczególnych pozycji w bibliotece, aby pobrać najnowsze informacje.
 
 ## Pomysły
 

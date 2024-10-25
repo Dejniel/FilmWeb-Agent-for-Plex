@@ -8,4 +8,5 @@
 - sprawdzanie czy nie ma update
 - domyślnie nadpisuj metadane i kasuj stare
 - dodaj ustawienie nie nadpisuwania metadanych
+- dodaj jezyk w metadanych filmów
 
