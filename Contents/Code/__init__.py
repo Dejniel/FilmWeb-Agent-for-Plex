@@ -205,10 +205,10 @@ class FilmWebMedia:
             if 'poster' in preview_data and 'path' in preview_data['poster']:
                 poster = "https://fwcdn.pl/fpo" + preview_data['poster']['path'].replace('$', '3')
                 if poster not in metadata.posters:
-                    metadata.posters.clear()
                     metadata.posters[poster] = Proxy.Media(HTTP.Request(poster).content)
 
             if 'genres' in preview_data:
+                metadata.genres.clear()
                 metadata.genre.clear()
                 for genre in preview_data['genres']:
                     metadata.genres.add(genre.get('name', {}).get('text', ''))
@@ -234,7 +234,6 @@ class FilmWebMedia:
             if 'coverPhoto' in preview_data and 'photo' in preview_data['coverPhoto']:
                 cover_photo = "https://fwcdn.pl/fph" + preview_data['coverPhoto']['photo'].get('sourcePath', '').replace('$', '1')
                 if cover_photo not in metadata.art:
-                    metadata.art.clear()
                     metadata.art[cover_photo] = Proxy.Media(HTTP.Request(cover_photo).content)
 
             FilmWebMedia.set_metadata_value(metadata, 'duration', preview_data.get('duration'))
