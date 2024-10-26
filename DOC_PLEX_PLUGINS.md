@@ -14,16 +14,25 @@ Poniższa lista zawiera opis metadanych dostępnych dla filmów w Plex za pomoc�
   - Tytuł filmu używany do sortowania alfabetycznego.
 
 - **summary**: `String`
-  - Streszczenie lub opis filmu.
+  - Opis filmu.
+
+- **tagline**: `String`
+  - Skrócony opis.
+
+- **trivia**: `String`
+  - Ciekawostki związane z filmem.
+
+- **quotes**: `String`
+  - Znaczące cytaty z filmu.
 
 - **year**: `Integer`
   - Rok produkcji filmu.
 
-- **duration**: `Integer`
-  - Czas trwania filmu w minutach.
-
 - **originally_available_at**: `Date`
   - Data premiery filmu.
+
+- **duration**: `Integer`
+  - Czas trwania filmu w minutach.
 
 ## Oceny
 
@@ -34,7 +43,7 @@ Poniższa lista zawiera opis metadanych dostępnych dla filmów w Plex za pomoc�
   - Ocena przyznana przez widzów.
 
 - **rating_image**: `String`
-  - Grafika reprezentująca ocenę filmu.
+  - Grafika reprezentująca ocenę filmu. Tylko zdefiniowane wartości np. `imdb://image.rating`, `rottentomatoes://image.rating.ripe`, `rottentomatoes://image.rating.upright`, `themoviedb://image.rating`. Aby wyświetlały się obydwie oceny, obydwie ikonki muszą być ustawione na `rottentomatoes`!
 
 - **audience_rating_image**: `String`
   - Grafika reprezentująca ocenę widzów.
@@ -43,9 +52,6 @@ Poniższa lista zawiera opis metadanych dostępnych dla filmów w Plex za pomoc�
   - Liczba ocen filmu.
 
 ## Szczegółowe Informacje
-
-- **tagline**: `String`
-  - Slogan reklamowy filmu.
 
 - **content_rating**: `String`
   - Klasyfikacja wiekowa filmu.
@@ -72,16 +78,16 @@ Poniższa lista zawiera opis metadanych dostępnych dla filmów w Plex za pomoc�
 
 ## Grafika i Media
 
-- **art**: `ProxyContainer`
+- **art**: `Dict<ProxyContainer>`
   - Obrazy tła i inne elementy graficzne związane z filmem.
 
-- **posters**: `ProxyContainer`
+- **posters**: `Dict<ProxyContainer>`
   - Plakaty i afisze filmu.
 
-- **banners**: `ProxyContainer`
+- **banners**: `Dict<ProxyContainer>`
   - Banery promocyjne filmu.
 
-- **themes**: `ProxyContainer`
+- **themes**: `Dict<ProxyContainer>`
   - Motywy muzyczne i dźwiękowe związane z filmem.
 
 ## Kategorie i Tagi
@@ -100,23 +106,17 @@ Poniższa lista zawiera opis metadanych dostępnych dla filmów w Plex za pomoc�
 
 ## Dodatkowe Informacje
 
-- **trivia**: `String`
-  - Ciekawostki związane z filmem.
-
-- **quotes**: `String`
-  - Znaczące cytaty z filmu.
-
 - **chapters**: `Set<String>`
   - Rozdziały lub segmenty filmu.
 
 - **reviews**: `Set<String>`
   - Recenzje filmu.
 
-- **extras**: `ObjectContainer`
-  - Dodatkowe materiały, takie jak wywiady, zwiastuny, klipy.
-
 - **similar**: `Set<String>`
   - Filmy podobne lub związane z bieżącym filmem.
+
+- **extras**: `[MediaContainer](https://python-plexapi.readthedocs.io/en/master/modules/base.html#plexapi.base.MediaContainer)`
+  - Dodatkowe materiały, takie jak wywiady, zwiastuny, klipy.
 
 ## Przykład Użycia ProxyContainer
 
