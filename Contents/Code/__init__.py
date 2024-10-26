@@ -217,14 +217,16 @@ class FilmWebMedia:
             if 'directors' in preview_data:
                 metadata.directors.clear()
                 for director in preview_data['directors']:
-                    metadata.directors.add(director.get('name', ''))
+                    role = metadata.directors.new()
+                    role.id = director.get('id', '')
+                    role.name = director.get('name', '')
                     Log("Added director: %s" % director['name'])
-
                     
             if 'mainCast' in preview_data:
                 metadata.roles.clear()
                 for cast_member in preview_data['mainCast']:
                     role = metadata.roles.new()
+                    role.id = cast_member.get('id', '')
                     role.name = cast_member.get('name', '')
                     role.role = "Actor"
                     Log("Added cast member: %s as Actor" % cast_member['name'])
