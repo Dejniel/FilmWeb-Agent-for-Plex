@@ -11,8 +11,8 @@ Oceny polskiego serwisu Filmweb są diametralnie różne od ocen globalnych. Są
 - Wtyczka – ogromnym wkładem mojej pracy – korzysta z tego samego [publicznego API (JSON)](DOC_FILMWEB_API.md), co strona Filmwebu i nie wymaga autoryzacji
 - Ponieważ, jak wiadomo, [dokumentacja wtyczek Plexa](DOC_PLEX_PLUGINS.md) jest już zamknięta, także to wymagało wysiłku, aby zrozumieć poszczególne funkcje
 
-**Potrzebujemy Ciebie!**  
-- Jeżeli uważasz, że mam rację – [wesprzyj moją pracę](link) i pomóż mi dalej rozwijać projekt!
+**Potrzebujemy Ciebie!**
+- To jest Open Source. Twoje [5zł miesięcznie](https://buymeacoffee.com/dejniel) zmienia wszytko i może uratować projekt! nawet pojedyncza wpłata może to zrobić. Utworzenie i utrzymanie takiego projektu to wiele dni z rzycia, twórcy na prawdę potrzebuja tych symbolicznych wpłat, [pomóż mi dalej rozwijać projekt](https://buymeacoffee.com/dejniel)!
 - Jeżeli jesteś programistą – nie ociągaj się z kontrybucją i zgłaszaniem błędów!
 
 

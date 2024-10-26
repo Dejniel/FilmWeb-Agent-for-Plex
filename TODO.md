@@ -1,5 +1,5 @@
 - wstaw plik licencja mozilla
-- dodaj link wsparcia
+- dodaj link zrzutki
 - zastanow sie czy nie zmienic miejsca paczki zeby agent byl na liscie z innymi agentami
 
 

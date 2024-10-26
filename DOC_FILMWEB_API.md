@@ -2,7 +2,7 @@
 
 I present to you a description of the publicly available Filmweb.pl API. The queries included here are used by the Filmweb website and do not require additional authorization
 
-I have gathered and described the known endpoints for you. It was a huge effort. If you like what I do, [support me](link)
+I have gathered and described the known endpoints for you. It was a huge effort. If you like what I do, [support me](https://buymeacoffee.com/dejniel)
 
 ## Overview
 
