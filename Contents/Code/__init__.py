@@ -209,10 +209,16 @@ class FilmWebMedia:
 
             if 'genres' in preview_data:
                 metadata.genres.clear()
-                metadata.genre.clear()
                 for genre in preview_data['genres']:
                     metadata.genres.add(genre.get('name', {}).get('text', ''))
                     Log("Added genre: %s" % genre['name']['text'])
+                    
+            if 'countries' in preview_data:
+                metadata.countries.clear()
+                for country in preview_data['countries']:
+                    role = metadata.countries.add(country.get('code'))
+                    Log("Added country: %s" % country.get('code'))
+                    
 
             if 'directors' in preview_data:
                 metadata.directors.clear()
