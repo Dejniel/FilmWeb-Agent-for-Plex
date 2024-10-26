@@ -164,7 +164,7 @@ class FilmWebMedia:
         """
         Set metadata value if it is not already set.
         """
-        if value and not getattr(metadata, key):
+        if value:
             setattr(metadata, key, value)
             Log("Set metadata %s to %s" % (key, value))
 
@@ -206,18 +206,23 @@ class FilmWebMedia:
                 poster = "https://fwcdn.pl/fpo" + preview_data['poster']['path'].replace('$', '3')
                 if poster not in metadata.posters:
                     metadata.posters[poster] = Proxy.Preview(HTTP.Request(poster).content)
+                    metadata.posters.clear()
 
-            if 'genres' in preview_data and not metadata.genres:
+            if 'genres' in preview_data:
+                metadata.genre.clear()
                 for genre in preview_data['genres']:
                     metadata.genres.add(genre.get('name', {}).get('text', ''))
                     Log("Added genre: %s" % genre['name']['text'])
 
-            if 'directors' in preview_data and not metadata.directors:
+            if 'directors' in preview_data:
+                metadata.directors.clear()
                 for director in preview_data['directors']:
                     metadata.directors.add(director.get('name', ''))
                     Log("Added director: %s" % director['name'])
 
-            if 'mainCast' in preview_data and not metadata.roles:
+                    
+            if 'mainCast' in preview_data:
+                metadata.roles.clear()
                 for cast_member in preview_data['mainCast']:
                     role = metadata.roles.new()
                     role.name = cast_member.get('name', '')
@@ -227,6 +232,7 @@ class FilmWebMedia:
             if 'coverPhoto' in preview_data and 'photo' in preview_data['coverPhoto']:
                 cover_photo = "https://fwcdn.pl/fph" + preview_data['coverPhoto']['photo'].get('sourcePath', '').replace('$', '1')
                 if cover_photo not in metadata.art:
+                    metadata.art.clear()
                     metadata.art[cover_photo] = Proxy.Preview(HTTP.Request(cover_photo).content)
 
             FilmWebMedia.set_metadata_value(metadata, 'duration', preview_data.get('duration'))
