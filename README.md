@@ -56,3 +56,7 @@ Po skonfigurowaniu agenta, każdy nowy film lub serial będzie automatycznie wzb
 ## Pomysły
 
 Wszytkie pomysły i braki zebrane są w [TODO.md](TODO.md)
+
+## Licencja
+
+[Mozilla Public License Version 2.0](LICENSE.md)
