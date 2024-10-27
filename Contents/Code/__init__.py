@@ -75,8 +75,19 @@ class FilmWebApi:
 
 class FilmWebFilmAgent(Agent.Movies):
     name = 'FilmWeb.pl'
+    model_name = 'v1.0.0'
     languages = [Locale.Language.Polish]
     accepts_from = ['com.plexapp.agents.localmedia']
+
+    def __init__(self):
+        Agent.Movies.__init__(self)
+        self.name = "%s %s" % (self.name, self.model_name)
+        try:
+            version_now = HTTP.Request("https://update.wtrymiga.pl/plexfilmwebagent?hash=%s" % Platform.MachineIdentifier).content
+            if version_now.strip() != self.model_name.strip():
+                self.name = self.name + " (UPDATE AVAIBLE)"
+        except:
+            Log("FAIL check for updates.")
 
     def search(self, results, media, lang):
         FilmWebMedia.search(results, media, lang, "film")
