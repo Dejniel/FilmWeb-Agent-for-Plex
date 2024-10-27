@@ -1,5 +1,7 @@
 # Plex Plugins API Documentation 2024
 
+I have gathered and described Plex Plugins API for you. It was a huge effort. If you like what I do, [support me](https://buymeacoffee.com/dejniel)
+
 ## Metadata Documentation
 ### Metadata for Agent.Movies Class
 
