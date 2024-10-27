@@ -1,146 +1,152 @@
-# Dokumentacja Metadanych dla Klasy Agent.Movies w Plex
+# Plex Plugins API Documentation 2024
 
-Poniższa lista zawiera opis metadanych dostępnych dla filmów w Plex za pomocą klasy `Agent.Movies`:
+## Metadata Documentation
+### Metadata for Agent.Movies Class
 
-## Podstawowe Metadane
+The following list describes the metadata available for movies in Plex using the `Agent.Movies` class:
+
+#### Basic Metadata
 
 - **title**: `String`
-  - Tytuł filmu.
+  - Movie title.
 
 - **original_title**: `String`
-  - Oryginalny tytuł filmu.
+  - Original movie title.
 
 - **title_sort**: `String`
-  - Tytuł filmu używany do sortowania alfabetycznego.
+  - Movie title used for alphabetical sorting.
 
 - **summary**: `String`
-  - Opis filmu.
+  - Movie description.
 
 - **tagline**: `String`
-  - Skrócony opis.
+  - Short description.
 
 - **trivia**: `String`
-  - Ciekawostki związane z filmem.
+  - Trivia related to the movie.
 
 - **quotes**: `String`
-  - Znaczące cytaty z filmu.
+  - Notable quotes from the movie.
 
 - **year**: `Integer`
-  - Rok produkcji filmu.
+  - Year of movie production.
 
 - **originally_available_at**: `Date`
-  - Data premiery filmu.
+  - Movie release date.
 
 - **duration**: `Integer`
-  - Czas trwania filmu w minutach.
+  - Duration of the movie in minutes.
 
-## Oceny
+#### Ratings
 
 - **rating**: `Float`
-  - Ogólna ocena filmu.
+  - Overall rating of the movie.
 
 - **audience_rating**: `Float`
-  - Ocena przyznana przez widzów.
+  - Rating given by the audience.
 
 - **rating_image**: `String`
-  - Grafika reprezentująca ocenę filmu. Tylko zdefiniowane wartości np. `imdb://image.rating`, `rottentomatoes://image.rating.ripe`, `rottentomatoes://image.rating.upright`, `themoviedb://image.rating`. Aby wyświetlały się obydwie oceny, obydwie ikonki muszą być ustawione na `rottentomatoes`!
+  - Image representing the movie rating. Only defined values like `imdb://image.rating`, `rottentomatoes://image.rating.ripe`, `rottentomatoes://image.rating.upright`, `themoviedb://image.rating`. To display both ratings, both icons must be set to `rottentomatoes`!
 
 - **audience_rating_image**: `String`
-  - Grafika reprezentująca ocenę widzów.
+  - Image representing the audience rating.
 
 - **rating_count**: `Integer`
-  - Liczba ocen filmu.
+  - Number of ratings for the movie.
 
-## Szczegółowe Informacje
+#### Detailed Information
 
 - **content_rating**: `String`
-  - Klasyfikacja wiekowa filmu.
+  - Movie content rating.
 
 - **content_rating_age**: `Integer`
-  - Minimalny zalecany wiek dla widzów.
+  - Minimum recommended age for viewers.
 
 - **studio**: `String`
-  - Studio odpowiedzialne za produkcję filmu.
+  - Studio responsible for movie production.
 
-## Twórcy i Osoby
+#### Creators and Cast
 
 - **directors**: `Set<Record>`
-  - Zestaw reżyserów filmu, każdy obiekt `Record` może zawierać dodatkowe informacje, takie jak imię, nazwisko, zdjęcie.
+  - Set of movie directors, each `Record` object may contain additional information such as first name, last name, photo.
 
 - **writers**: `Set<Record>`
-  - Zestaw scenarzystów filmu.
+  - Set of movie writers.
 
 - **producers**: `Set<Record>`
-  - Zestaw producentów filmu.
+  - Set of movie producers.
 
 - **roles**: `Set<Record>`
-  - Zestaw ról aktorskich w filmie, każdy `Record` zawiera informacje o aktorze i roli, którą gra.
+  - Set of acting roles in the movie, each `Record` contains information about the actor and the role they play.
 
-## Grafika i Media
+#### Artwork and Media
 
 - **art**: `Dict<ProxyContainer>`
-  - Obrazy tła i inne elementy graficzne związane z filmem.
+  - Background images and other graphical elements related to the movie.
 
 - **posters**: `Dict<ProxyContainer>`
-  - Plakaty i afisze filmu.
+  - Movie posters.
 
 - **banners**: `Dict<ProxyContainer>`
-  - Banery promocyjne filmu.
+  - Promotional banners for the movie. (Not sure if this field is exclusively for TV shows)
 
 - **themes**: `Dict<ProxyContainer>`
-  - Motywy muzyczne i dźwiękowe związane z filmem.
+  - Music and sound themes related to the movie.
 
-## Kategorie i Tagi
+#### Categories and Tags
 
 - **genres**: `Set<String>`
-  - Gatunki filmowe.
+  - Movie genres.
 
 - **collections**: `Set<String>`
-  - Kolekcje, do których film jest przypisany.
+  - Collections to which the movie belongs.
 
 - **tags**: `Set<String>`
-  - Tagi związane z filmem.
+  - Tags related to the movie.
 
 - **countries**: `Set<String>`
-  - Kraje produkcji filmu.
+  - Countries of movie production.
 
-## Dodatkowe Informacje
+#### Additional Information
 
 - **chapters**: `Set<String>`
-  - Rozdziały lub segmenty filmu.
+  - Chapters or segments of the movie.
 
 - **reviews**: `Set<String>`
-  - Recenzje filmu.
+  - Movie reviews.
 
 - **similar**: `Set<String>`
-  - Filmy podobne lub związane z bieżącym filmem.
+  - Movies similar or related to the current movie.
 
 - **extras**: `[MediaContainer](https://python-plexapi.readthedocs.io/en/master/modules/base.html#plexapi.base.MediaContainer)`
-  - Dodatkowe materiały, takie jak wywiady, zwiastuny, klipy.
+  - Additional materials such as interviews, trailers, clips.
 
-## Przykład Użycia ProxyContainer
+### Metadata Usage Details
 
-Przykład dodawania obrazów do metadanych za pomocą `ProxyContainer`:
+#### ProxyContainer Usage Example
+
+Example of adding images to metadata using `ProxyContainer`:
 
 ```python
-# Dodawanie obrazu do kolekcji 'art'
+# Adding an image to the 'art' collection
 art_url = 'http://example.com/path/to/art.jpg'
 metadata.art[art_url] = Proxy.Preview(HTTP.Request(art_url).content, sort_order=1)
 ```
 
-`sort_order` jest opcjonalnym parametrem, który określa kolejność wyświetlania elementów w kolekcjach takich jak `art`, `posters`, `banners`. Dzięki niemu można ustalić priorytet wyświetlania tych elementów w interfejsie użytkownika. Niższa wartość `sort_order` oznacza wyższy priorytet (np. element z `sort_order=0` pojawi się przed elementem z `sort_order=1`).
+`sort_order` is an optional parameter that specifies the display order of items in collections like `art`, `posters`, `banners`. It allows setting the display priority of these elements in the user interface. A lower `sort_order` value means a higher priority (e.g., an item with `sort_order=0` will appear before an item with `sort_order=1`).
 
-## Definicja Record
+#### Record Definition
 
-Record jest klasą w API Plex, która reprezentuje złożony rekord danych. Obiekty Record mogą zawierać różne atrybuty, które są dynamicznie zarządzane. Są one szczególnie użyteczne do przechowywania skomplikowanych danych o osobach (takich jak reżyserzy, aktorzy) w metadanych filmu. 
+`Record` is a class in the Plex API that represents a complex data record. `Record` objects can contain various attributes that are dynamically managed. They are particularly useful for storing detailed data about people (such as directors, actors) in movie metadata.
 
-Przykładowo, rekord dla reżysera może zawierać takie atrybuty jak:
-- name: Imię i nazwisko reżysera.
-- photo: URL do zdjęcia reżysera.
-- role: Specyficzna rola lub funkcja w produkcji filmu.
+For example, a record for a director may contain attributes like:
+- **name**: Name of the director.
+- **photo**: URL to the director's photo.
+- **role**: Specific role or function in the movie production.
 
 ```python
 role = metadata.roles.new()
 role.name = "Bruce Willis"
 role.role = "Actor"
 ```
+
