@@ -1,7 +1,7 @@
 [
 	{
 		"id": "excludedKeys",
-		"label": "Nazwy plików zawierające niepotrzebne słowa typu 'remastered' albo 'dubbing' bardzo mylą wyszukiwarkę filmweb. Wymień tu po przecinkach słowa które chcesz ignorować w nazwach plików.",
+		"label": "File names containing unnecessary words like 'remastered' or 'dubbing' can greatly confuse the Filmweb search engine. List here, separated by commas, the words you want to ignore in file names.",
 		"type": "text",
 		"default": "dubbing,remastered,lektor,pl,1080p,film,dvd,720p"
 	}
