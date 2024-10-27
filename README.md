@@ -12,7 +12,7 @@ Oceny polskiego serwisu Filmweb są diametralnie różne od ocen globalnych. Są
 - Ponieważ, jak wiadomo, [dokumentacja wtyczek Plexa](DOC_PLEX_PLUGINS.md) jest już zamknięta, także to wymagało wysiłku, aby zrozumieć poszczególne funkcje
 
 **Potrzebujemy Ciebie!**
-- To jest Open Source. Twoje [5zł miesięcznie](https://buymeacoffee.com/dejniel) zmienia wszytko i może uratować projekt! nawet pojedyncza wpłata może to zrobić. Utworzenie i utrzymanie takiego projektu to wiele dni z rzycia, twórcy na prawdę potrzebuja tych symbolicznych wpłat, [pomóż mi dalej rozwijać projekt](https://buymeacoffee.com/dejniel)!
+- To jest Open Source. Twoje [5zł miesięcznie](https://buymeacoffee.com/dejniel) zmienia wszytko i może uratować projekt! nawet pojedyncza wpłata może to zrobić. Utworzenie i utrzymanie takiego projektu to wiele dni z życia, twórcy naprawdę potrzebują tych symbolicznych wpłat, [pomóż mi dalej rozwijać projekt](https://buymeacoffee.com/dejniel)!
 - Jeżeli jesteś programistą – nie ociągaj się z kontrybucją i zgłaszaniem błędów!
 
 
@@ -36,7 +36,7 @@ Metadane, których brakuje:
 - Producenci
 - Dodatkowe multimedia (np. inne plakaty, zwiastuny)
 
-Plex także ogranicza ustawinie innych, niż zdefinowane przez nich, ikonek. Stąd nie mogę nigdzie umieścić loga FilmWebu.
+Plex także ogranicza ustawianie innych, niż zdefinowane przez nich, ikonek. Stąd nie mogę nigdzie umieścić loga FilmWebu.
 
 ## Instalacja
 
@@ -51,7 +51,7 @@ Instrukcja ręcznej instalacji wtyczki jest opisana na [stronie Plexa](https://s
 
 ### Użycie
 
-Po skonfigurowaniu agenta, każdy nowy film lub serial będzie automatycznie wzbogacany o metadane z FilmWeb. Możesz także ręcznie wybrać opcję „Odświerz” dla poszczególnych pozycji w bibliotece, aby pobrać najnowsze informacje.
+Po skonfigurowaniu agenta, każdy nowy film lub serial będzie automatycznie wzbogacany o metadane z FilmWeb. Możesz także ręcznie wybrać opcję „Odśwież” dla poszczególnych pozycji w bibliotece, aby pobrać najnowsze informacje.
 
 ## Pomysły
 
