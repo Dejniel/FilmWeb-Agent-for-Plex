@@ -1,6 +1,6 @@
 # FilmWeb Standalone Agent for Plex
 
-Many movies are rated differently in Poland than globally. This plugin integrates Plex with the Polish Filmweb, providing ratings that reflect local preferences
+Many movies are rated differently in Poland compared to global standards. This plugin integrates Plex with the Polish Filmweb, providing ratings that reflect local preferences. The project also provides the [Plex Plugin API documentation](DOC_PLEX_PLUGINS.md).
 
 Są filmy, które oceniamy zupełnie inaczej w Polsce niż na świecie. Nie rozumiem, dlaczego nikt wcześniej (dobrze) nie zintegrował Plexa z polskim Filmwebem. Ale skoro tak, to ja to zrobiłem
 
