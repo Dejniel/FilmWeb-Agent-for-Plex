@@ -152,3 +152,125 @@ role.name = "Bruce Willis"
 role.role = "Actor"
 ```
 
+## Constants in Plex Plugins
+
+### HTTP Constant
+
+`HTTP` is a constant within the Plex Plugin API that provides access to an instance of the `HTTPKit` class, designed for handling HTTP functions. Here's a detailed description of the properties and methods available through the `HTTP` constant.
+
+#### Properties
+
+- **CacheTime** (`int`): 
+  - Specifies the cache duration for HTTP requests in seconds. It defaults to 0, which means caching is disabled.
+
+#### Methods
+
+- **ClearCache** (`instancemethod`):
+  - Clears the HTTP cache for the current instance accessed via the `HTTP` constant.
+
+- **ClearCookies** (`instancemethod`):
+  - Removes all cookies stored in the current session accessed via the `HTTP` constant.
+
+- **Cookies** (`instance`):
+  - Returns a `MozillaCookieJar` object containing all cookies stored for the instance accessed via the `HTTP` constant.
+
+- **CookiesForURL** (`instancemethod`):
+  - Returns cookies associated with a specified URL accessed via the `HTTP` constant.
+
+- **GetCookiesForURL** (`instancemethod`):
+  - Retrieves cookies for a specified URL. This method appears to be a duplicate of `CookiesForURL` and may require further verification.
+
+- **Headers** (`dict`):
+  - Contains a dictionary of headers that will be used during HTTP requests accessed via the `HTTP` constant.
+
+- **PreCache** (`instancemethod`):
+  - Method for pre-caching data before it is actually requested via the `HTTP` constant.
+
+- **RandomizeUserAgent** (`instancemethod`):
+  - Changes the `User-Agent` header to a randomly generated one for each HTTP request made via the `HTTP` constant.
+
+- **Request** (`instancemethod`):
+  - Performs an HTTP request using defined headers, cookies, and other settings accessed via the `HTTP` constant.
+
+- **SetCacheTime** (`instancemethod`):
+  - Sets the cache duration for HTTP requests. It takes one `int` value representing time in seconds, accessible via the `HTTP` constant.
+
+- **SetHeader** (`instancemethod`):
+  - Allows setting or modifying HTTP headers for the current session accessed via the `HTTP` constant.
+
+- **SetPassword** (`instancemethod`):
+  - Sets a password if required for authentication within HTTP requests accessed via the `HTTP` constant.
+
+- **SetTimeout** (`instancemethod`):
+  - Sets a timeout limit for HTTP requests accessed via the `HTTP` constant.
+
+### Client Constant (deprecated)
+
+#### Overview
+The `Client` object has been deprecated and removed from the Plex plugin APIs. This object provided fields such as:
+- **Platform**: Type of client platform (e.g., iOS, Android, Windows).
+- **Product**: Client's product name (e.g., Plex Media Player, Plex Web).
+- **Protocols**: List of supported protocols.
+- **Version**: Client version.
+
+## Constants in Plex Plugins
+
+### Platform Constant
+
+`Platform` is a constant within the Plex Plugin API that provides access to an instance of the `PlatformKit` class with various attributes about the platform on which Plex is running. Here's a detailed description of the properties available through the `Platform` constant.
+
+#### Properties
+
+- **CPU** (`str`):
+  - Represents the CPU architecture of the platform (e.g., `i386`).
+
+- **HasFlash** (`bool`):
+  - Indicates whether Adobe Flash is supported (e.g., `False`).
+
+- **HasSilverlight** (`bool`):
+  - Indicates whether Microsoft Silverlight is supported (e.g., `False`).
+
+- **HasWebKit** (`bool`):
+  - Indicates whether WebKit is supported (e.g., `False`).
+
+- **MachineIdentifier** (`str`):
+  - Provides the unique identifier of the Plex server (e.g., `0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f`).
+
+- **OS** (`str`):
+  - Specifies the operating system on which Plex is running (e.g., `Linux`).
+
+- **OSVersion** (`str`):
+  - Specifies the version of the operating system (e.g., `6.8.0-47-generic`).
+
+- **ServerVersion** (`str`):
+  - Indicates the version of the Plex server software (e.g., `1.41.0.8994-f2c27da23`).
+
+### Plugin Constant
+
+`PluginKit` is a constant within the Plex Plugin API that provides access to various methods and properties related to plugin management and operation. The instance of `PluginKit` is referred to as `Plugin` in the API. Here's a detailed description of the methods and properties available through the `Plugin` constant.
+
+#### Properties
+
+- **Identifier** (`str`):
+  - The unique identifier for the plugin, such as `com.plexapp.agents.foo`.
+
+- **Prefixes** (`list`):
+  - A list of URL prefixes that the plugin handles. It typically includes routing paths.
+
+- **ViewGroups** (`dict`):
+  - A dictionary that stores view groups defined by the plugin, which help in organizing content presentation.
+
+#### Methods
+
+- **AddPrefixHandler** (`instancemethod`):
+  - Binds a URL prefix to a function, allowing the plugin to handle requests at that URL.
+
+- **AddViewGroup** (`instancemethod`):
+  - Defines a new view group, which can be used to organize how data is presented in the Plex client.
+
+- **Nice** (`instancemethod`):
+  - Provides a mechanism to adjust the processing priority of the plugin, potentially improving performance under load.
+
+- **Traceback** (`instancemethod`):
+  - A method for generating a traceback from the current execution point, useful for debugging and error handling.
+
