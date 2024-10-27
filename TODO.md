@@ -1,7 +1,7 @@
 - dodaj link zrzutki
 - zastanow sie czy nie zmienic miejsca paczki zeby agent byl na liscie z innymi agentami
 
-
+- jak nie ma ocen krytyków to nie wyswietla ocen ? https://www.filmweb.pl/film/Male%C5%84stwo+i+przyjaciele-2004-123785
 - zrob agenta seriali
 - napraw plakaty przy wyszukiwaniu
 - sprawdzanie czy nie ma update
