@@ -1,18 +1,9 @@
 - dodaj link zrzutki
-- zastanow sie czy nie zmienic miejsca paczki zeby agent byl na liscie z innymi agentami
 
-- jak nie ma ocen krytyków to nie wyswietla ocen ? https://www.filmweb.pl/film/Male%C5%84stwo+i+przyjaciele-2004-123785
-- zrob agenta seriali
-- napraw plakaty przy wyszukiwaniu
-- sprawdzanie czy nie ma update
-- refactor - holder dla api plexa
-- dodaj jezyk w metadanych filmów
+- możliwy bug: jak nie ma ocen krytyków to nie wyswietla ocen np. https://www.filmweb.pl/film/Male%C5%84stwo+i+przyjaciele-2004-123785
 - wczytać wiecej zdjęć
     - `https://www.filmweb.pl/api/v1/film/10052776/photos?all=true`
-- dodac zwiastuny
-    - `https://www.filmweb.pl/api/v1/film/10052776/videos?all=false`
-    - `https://www.filmweb.pl/api/v1/webVideo/70224/sources`
-- dodac nazwy roli i zdjęcia
+- dodac nazwy roli i zdjęcia aktorów
     - `https://www.filmweb.pl/api/v1/person/259/roles/actors?all=true`
 - obsluzyc endpointy opini krytykow
     - `https://www.filmweb.pl/api/v1/film/11841/reviews/external`
@@ -21,3 +12,11 @@
     - `https://www.filmweb.pl/api/v1/film/10030642/critics`
     - `https://www.filmweb.pl/api/v1/film/critics`
     - `https://www.filmweb.pl/api/v1/user/tru3/vote/film/10030642`
+
+zadania czekające na nową [wersję plex API](https://www.plex.tv/blog/the-future-of-plex-focused-streamlined-and-ready-for-feedback/):
+- zrob agenta seriali
+- plakaty przy wyszukiwaniu
+- refactor - holder dla api plexa
+- dodac zwiastuny
+    - `https://www.filmweb.pl/api/v1/film/10052776/videos?all=false`
+    - `https://www.filmweb.pl/api/v1/webVideo/70224/sources`
