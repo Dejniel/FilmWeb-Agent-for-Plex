@@ -120,7 +120,7 @@ The following list describes the metadata available for movies in Plex using the
 - **similar**: `Set<String>`
   - Movies similar or related to the current movie.
 
-- **extras**: `[MediaContainer](https://python-plexapi.readthedocs.io/en/master/modules/base.html#plexapi.base.MediaContainer)`
+- **extras**: [MediaContainer](https://python-plexapi.readthedocs.io/en/master/modules/base.html#plexapi.base.MediaContainer)
   - Additional materials such as interviews, trailers, clips.
 
 ### Metadata Usage Details
@@ -160,8 +160,14 @@ role.role = "Actor"
 
 #### Properties
 
-- **CacheTime** (`int`): 
+- **CacheTime** (`int`):
   - Specifies the cache duration for HTTP requests in seconds. It defaults to 0, which means caching is disabled.
+
+- **Cookies** (`CookiePolicy`):
+  - Object containing all cookies stored for the instance accessed via the `HTTP` constant.
+
+- **Headers** (`dict`):
+  - Dictionary of headers that will be used during HTTP requests accessed via the `HTTP` constant.
 
 #### Methods
 
@@ -171,17 +177,11 @@ role.role = "Actor"
 - **ClearCookies** (`instancemethod`):
   - Removes all cookies stored in the current session accessed via the `HTTP` constant.
 
-- **Cookies** (`instance`):
-  - Returns a `MozillaCookieJar` object containing all cookies stored for the instance accessed via the `HTTP` constant.
-
 - **CookiesForURL** (`instancemethod`):
   - Returns cookies associated with a specified URL accessed via the `HTTP` constant.
 
 - **GetCookiesForURL** (`instancemethod`):
   - Retrieves cookies for a specified URL. This method appears to be a duplicate of `CookiesForURL` and may require further verification.
-
-- **Headers** (`dict`):
-  - Contains a dictionary of headers that will be used during HTTP requests accessed via the `HTTP` constant.
 
 - **PreCache** (`instancemethod`):
   - Method for pre-caching data before it is actually requested via the `HTTP` constant.
