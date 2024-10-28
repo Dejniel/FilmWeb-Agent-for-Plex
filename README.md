@@ -44,7 +44,7 @@ Plex ogranicza ustawianie innych, niż zdefinowane przez nich, ikonek ocen. Stą
 
 ### Zmiany API i przyszłość wtyczki
 
-Weź pod uwagę, że dla wersji [Plex 1.41+](https://forums.plex.tv/t/important-information-for-users-running-plex-media-server-on-nvidia-shield-devices/883484) ta wtyczka zgodnie z [zapowiedziami twórców Plaxa](https://forums.plex.tv/t/plex-fireside-in-the-forum-2024/885879/319) przestanie działać w obecnej wersji – będzie wymagała przepisania – co uczynię kiedy będzie gotowa dokumentacja. Obawiam się jednak, że od czasu wycofania aktualnej formy pluginów do udostępnienia nowego API pluginów może trochę minąć.
+Weź pod uwagę, że według zapowiedzi twórców możliwość instalacji starych wtyczek miała być usunięta w wersji [Plex 1.41+](https://forums.plex.tv/t/important-information-for-users-running-plex-media-server-on-nvidia-shield-devices/883484) i [zastąpiona zupełnie nowym systemem wtyczek](https://forums.plex.tv/t/plex-fireside-in-the-forum-2024/885879/319). Tak się jednak nie stało. Stare wtyczki nadal działają, a dokumentacji nowych wtyczek nie widać. Nie wiadomo, czy nastąpi przerwa w działaniu wtyczek, niemniej zaktualizuję wtyczkę, jak tylko pojawi się dokumentacja nowego API wtyczek.
 
 ## Instalacja
 
