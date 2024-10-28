@@ -16,9 +16,11 @@ Oceny polskiego serwisu Filmweb są diametralnie różne od ocen globalnych. Są
 - Jeżeli jesteś programistą – nie ociągaj się z kontrybucją i zgłaszaniem błędów!
 
 
-## Funkcje
+## Sposób działania i ograniczenia
 
-**Wyszukiwanie i pobieranie danych z FilmWeb**: Agent korzysta z dostępnego [API AJAX](DOC_FILMWEB_API.md), aby uprościć cały proces i pominąć zamknięte API FilmWeb oraz nie parsować strony. Niemniej może brakować szczegółowych metadanych.
+### Wyszukiwanie i pobieranie danych z FilmWeb
+
+Agent korzysta z dostępnego [API AJAX](DOC_FILMWEB_API.md), aby uprościć cały proces i pominąć zamknięte API FilmWeb oraz nie parsować strony. Niemniej może brakować szczegółowych metadanych.
 
 Pobierane są:
 
@@ -36,7 +38,13 @@ Metadane, których brakuje:
 - Producenci
 - Dodatkowe multimedia (np. inne plakaty, zwiastuny)
 
-Plex także ogranicza ustawianie innych, niż zdefinowane przez nich, ikonek. Stąd nie mogę nigdzie umieścić loga FilmWebu.
+### Brak logo FilmWeb
+
+Plex ogranicza ustawianie innych, niż zdefinowane przez nich, ikonek ocen. Stąd nie mogę nigdzie umieścić loga FilmWebu.
+
+### Zmiany API i przyszłość wtyczki
+
+Weź pod uwagę, że dla wersji [Plex 1.41+](https://forums.plex.tv/t/important-information-for-users-running-plex-media-server-on-nvidia-shield-devices/883484) ta wtyczka zgodnie z [zapowiedziami twórców Plaxa](https://forums.plex.tv/t/plex-fireside-in-the-forum-2024/885879/319) przestanie działać w obecnej wersji – będzie wymagała przepisania – co uczynię kiedy będzie gotowa dokumentacja. Obawiam się jednak, że od czasu wycofania aktualnej formy pluginów do udostępnienia nowego API pluginów może trochę minąć.
 
 ## Instalacja
 
