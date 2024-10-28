@@ -1,6 +1,5 @@
 - dodaj link zrzutki
 
-- możliwy bug: jak nie ma ocen krytyków to nie wyswietla ocen np. https://www.filmweb.pl/film/Male%C5%84stwo+i+przyjaciele-2004-123785
 - wczytać wiecej zdjęć
     - `https://www.filmweb.pl/api/v1/film/10052776/photos?all=true`
 - obsluzyc endpointy opini krytykow

@@ -212,18 +212,23 @@ class FilmWebMedia:
 
         # Fetch and set audience rating
         rating_data = FilmWebApi.get_rating(metadata.id)
-        if rating_data:
-            FilmWebMedia.set_metadata_value(metadata, 'audience_rating', rating_data.get('rate'))
-            # Only predefind icons works!
-            # Only way to display both audience and critics rating is to set rottentomatoes icons (lol)!
-            FilmWebMedia.set_metadata_value(metadata, 'audience_rating_image', 'rottentomatoes://image.rating.upright')
-
         # Fetch and set critics rating
         critics_rating_data = FilmWebApi.get_critics_rating(metadata.id)
-        if critics_rating_data:
+        if rating_data:
+            if not critics_rating_data:
+                # If there is no critics rating then audience rating will not show. 
+                # TODO this is only workaround:
+                critics_rating_data = {'rate':rating_data.get('rate'), 'count':1}
+            
             FilmWebMedia.set_metadata_value(metadata, 'rating', critics_rating_data.get('rate'))
             FilmWebMedia.set_metadata_value(metadata, 'rating_count', critics_rating_data.get('count'))
+            # Only way to display both audience and critics rating is to set rottentomatoes icons (lol)!
+            # Only predefind icons works!
             FilmWebMedia.set_metadata_value(metadata, 'rating_image', 'rottentomatoes://image.rating.ripe')
+        
+            FilmWebMedia.set_metadata_value(metadata, 'audience_rating', rating_data.get('rate'))
+            FilmWebMedia.set_metadata_value(metadata, 'audience_rating_image', 'rottentomatoes://image.rating.upright')
+
 
         # Fetch and set additional preview data
         preview_data = FilmWebApi.get_preview(metadata.id)
