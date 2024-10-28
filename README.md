@@ -49,6 +49,13 @@ Instrukcja ręcznej instalacji wtyczki jest opisana na [stronie Plexa](https://s
 3. **Uruchom ponownie Plex**: Po umieszczeniu wtyczki w odpowiednim folderze, uruchom ponownie serwer Plex Media Server.
 4. **Konfiguracja**: Wejdź w ustawienia Plexa, wybierz zarządzanie agentami i ustaw `FilmWeb.pl` jako główne źródło metadanych dla filmów i seriali.
 
+Przykładowe komendy dla Plexa w Dockerze z volumem configa w `plex_config`:
+```bash
+cd "/var/lib/docker/volumes/plex_config/_data/Library/Application Support/Plex Media Server/Plug-ins"
+git clone "https://github.com/Dejniel/FilmWeb-Agent-for-Plex" "FilmWeb-Agent-for-Plex.bundle"
+docker restart plex
+```
+
 ### Użycie
 
 Po skonfigurowaniu agenta, każdy nowy film lub serial będzie automatycznie wzbogacany o metadane z FilmWeb. Możesz także ręcznie wybrać opcję „Odśwież” dla poszczególnych pozycji w bibliotece, aby pobrać najnowsze informacje.
