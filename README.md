@@ -48,7 +48,7 @@ Weź pod uwagę, że według zapowiedzi twórców możliwość instalacji staryc
 
 ## Instalacja
 
-Instrukcja ręcznej instalacji wtyczki jest opisana na [stronie Plexa](https://support.plex.tv/articles/201187656-how-do-i-manually-install-a-plugin/). Nie ma możliwości instalacji wtyczek w inny sposób ponieważ Plex [wycował się z nich](https://forums.plex.tv/t/discontinuation-of-plugins-watch-later-recommended-and-cloud-sync/312312) pod naciskiem korporacji Copyrightowych.
+Instrukcja ręcznej instalacji wtyczki jest opisana na [stronie Plexa](https://support.plex.tv/articles/201187656-how-do-i-manually-install-a-plugin/). Nie ma możliwości instalacji wtyczek w inny sposób ponieważ Plex zwleka z publikacją zupełnie [nowego API Pluginów](#zmiany-api-i-przyszłość-wtyczki) a aktualne API jest niewspierane od lat.
 
 ### W skrócie
 
