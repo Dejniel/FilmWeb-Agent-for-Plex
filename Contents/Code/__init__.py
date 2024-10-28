@@ -232,12 +232,20 @@ class FilmWebMedia:
             FilmWebMedia.set_metadata_value(metadata, 'original_title', preview_data.get('originalTitle', {}).get('title'))
             FilmWebMedia.set_metadata_value(metadata, 'year', preview_data.get('year'))
             FilmWebMedia.set_metadata_value(metadata, 'tagline', Utils.remove_bbcode(preview_data.get('plotOrDescriptionSynopsis')))
-
+            FilmWebMedia.set_metadata_value(metadata, 'duration', preview_data.get('duration'))
+            
             if 'poster' in preview_data and 'path' in preview_data['poster']:
                 poster = "https://fwcdn.pl/fpo" + preview_data['poster']['path'].replace('$', '3')
                 if poster not in metadata.posters:
                     metadata.posters[poster] = Proxy.Media(HTTP.Request(poster).content)
+                    Log("Set poster: %s" % poster)
+                    
+            if 'coverPhoto' in preview_data and 'photo' in preview_data['coverPhoto']:
+                cover_photo = "https://fwcdn.pl/fph" + preview_data['coverPhoto']['photo'].get('sourcePath', '').replace('$', '1')
+                if cover_photo not in metadata.art:
 
+                    metadata.art[cover_photo] = Proxy.Media(HTTP.Request(cover_photo).content)
+                    
             if 'genres' in preview_data:
                 metadata.genres.clear()
                 for genre in preview_data['genres']:
@@ -263,10 +271,11 @@ class FilmWebMedia:
                 metadata.roles.clear()
                 for cast_member in preview_data['mainCast']:
                     role = metadata.roles.new()
-                    role.id = cast_member.get('id', '')
+                    #role.id = cast_member.get('id', '')
                     role.name = cast_member.get('name', '')
                     role.role = "Actor"
                     Log("Added cast member: %s as Actor" % cast_member['name'])
+                    
         # Fetch and set additional roles
         roles = FilmWebApi.get_roles(metadata.id)
         if roles:
@@ -296,10 +305,4 @@ class FilmWebMedia:
                     plex_role.photo = "https://fwcdn.pl/ppo" + person['poster']['path'].replace('$', '1')
                 Log("Added cast member: %s as %s (%s)" % (plex_role.name, plex_role.role, plex_role.photo))
 
-            if 'coverPhoto' in preview_data and 'photo' in preview_data['coverPhoto']:
-                cover_photo = "https://fwcdn.pl/fph" + preview_data['coverPhoto']['photo'].get('sourcePath', '').replace('$', '1')
-                if cover_photo not in metadata.art:
-                    metadata.art[cover_photo] = Proxy.Media(HTTP.Request(cover_photo).content)
-
-            FilmWebMedia.set_metadata_value(metadata, 'duration', preview_data.get('duration'))
 
