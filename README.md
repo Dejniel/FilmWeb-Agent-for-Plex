@@ -66,7 +66,7 @@ docker restart plex
 
 ### Użycie
 
-Po skonfigurowaniu agenta, każdy nowy film lub serial będzie automatycznie wzbogacany o metadane z FilmWeb. Możesz także ręcznie wybrać opcję „Odśwież” dla poszczególnych pozycji w bibliotece, aby pobrać najnowsze informacje.
+Po skonfigurowaniu agenta, każdy nowy film będzie automatycznie pobierał metadane z FilmWeb. Możesz także ręcznie wybrać opcję „Odśwież” dla poszczególnych pozycji w bibliotece, aby pobrać najnowsze informacje.
 
 ## Pomysły
 
