@@ -10,6 +10,9 @@
     - `https://www.filmweb.pl/api/v1/film/10030642/critics`
     - `https://www.filmweb.pl/api/v1/film/critics`
     - `https://www.filmweb.pl/api/v1/user/tru3/vote/film/10030642`
+- miejsce w rankingu światowym
+    - `https://www.filmweb.pl/api/v1/film/11841/rankings`
+
 
 zadania czekające na nową [wersję plex API](https://www.plex.tv/blog/the-future-of-plex-focused-streamlined-and-ready-for-feedback/):
 - zrob agenta seriali
