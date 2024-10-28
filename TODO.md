@@ -3,8 +3,6 @@
 - możliwy bug: jak nie ma ocen krytyków to nie wyswietla ocen np. https://www.filmweb.pl/film/Male%C5%84stwo+i+przyjaciele-2004-123785
 - wczytać wiecej zdjęć
     - `https://www.filmweb.pl/api/v1/film/10052776/photos?all=true`
-- dodac nazwy roli i zdjęcia aktorów
-    - `https://www.filmweb.pl/api/v1/person/259/roles/actors?all=true`
 - obsluzyc endpointy opini krytykow
     - `https://www.filmweb.pl/api/v1/film/11841/reviews/external`
     - `https://www.filmweb.pl/api/v1/external/review/1891/preview`

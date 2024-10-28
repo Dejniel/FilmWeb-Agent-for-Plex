@@ -10,7 +10,9 @@ This API provides search functionality across various film and TV show entities 
 
 ## API Endpoints
 
-### Endpoint: Search for Movies and TV Shows
+### Movies and series info
+
+#### Endpoint: Search for Movies and TV Shows
 
 - **URL:** `https://www.filmweb.pl/api/v1/live/search`
 - **Method:** `GET`
@@ -20,10 +22,10 @@ This API provides search functionality across various film and TV show entities 
   - `query` (required): The text query used to search for movies, TV shows, or people.
   - `pageSize` (optional): The number of search results to return per page. Default value is 10. Recommended value is 12, as used on the official site.
 
-#### Description
+##### Description
 This endpoint allows you to search for movies, TV shows, and people based on a given text query.
 
-#### Response Description
+##### Response Description
 - `total` (integer): The total number of results matching the query.
 - `searchHits` (list of objects): The list of search results. Each result contains the following fields:
   - `id` (integer): The unique identifier of the result.
@@ -34,13 +36,13 @@ This endpoint allows you to search for movies, TV shows, and people based on a g
     - `id` (integer): The unique identifier of the actor.
     - `name` (string): The name of the actor.
 
-#### Note
+##### Note
 Each result may contain varying levels of detail depending on the type (`film`, `serial`, `person`).
 
 
 ---
 
-### Endpoint: Get Title Information
+#### Endpoint: Get Title Information
 
 - **URL:** `https://www.filmweb.pl/api/v1/title/{id}/info`
 - **Method:** `GET`
@@ -49,10 +51,10 @@ Each result may contain varying levels of detail depending on the type (`film`, 
 - **Path Parameters:**
   - `id` (required): The unique identifier of the movie, TV show, or person for which information is being requested.
 
-#### Description
+##### Description
 This endpoint retrieves detailed information about a specific movie, TV show, or person by using its unique identifier.
 
-#### Response Description
+##### Response Description
 - `title` (string): The title of the movie or TV show.
 - `originalTitle` (optional, string): The original title of the movie or TV show.
 - `year` (integer): The release year of the movie or TV show.
@@ -63,7 +65,7 @@ This endpoint retrieves detailed information about a specific movie, TV show, or
 
 ---
 
-### Endpoint: Get Film Description
+#### Endpoint: Get Film Description
 
 - **URL:** `https://www.filmweb.pl/api/v1/film/{id}/description`
 - **Method:** `GET`
@@ -72,10 +74,10 @@ This endpoint retrieves detailed information about a specific movie, TV show, or
 - **Path Parameters:**
   - `id` (required): The unique identifier of the movie for which the description is being requested.
 
-#### Description
+##### Description
 This endpoint retrieves a detailed description (synopsis) of a specific movie by using its unique identifier.
 
-#### Response Description
+##### Response Description
 - `id` (integer): The unique identifier of the movie.
 - `synopsis` (string): The description or synopsis of the movie.
 - `locale` (string): The locale for the provided description (e.g., `pl_PL`).
@@ -86,7 +88,7 @@ This endpoint retrieves a detailed description (synopsis) of a specific movie by
 
 ---
 
-### Endpoint: Get Film Preview
+#### Endpoint: Get Film Preview
 
 - **URL:** `https://www.filmweb.pl/api/v1/film/{id}/preview`
 - **Method:** `GET`
@@ -95,10 +97,10 @@ This endpoint retrieves a detailed description (synopsis) of a specific movie by
 - **Path Parameters:**
   - `id` (required): The unique identifier of the movie for which the preview information is being requested.
 
-#### Description
+##### Description
 This endpoint retrieves a preview of a specific movie, including details such as plot, genres, duration, cast, and directors.
 
-#### Response Description
+##### Response Description
 - `year` (integer): The release year of the movie.
 - `entityName` (string): The type of entity (`film`, `serial`).
 - `subType` (string): The subtype of the entity (`film_cinema`, `mini_serial`, `serial_tv`).
@@ -150,29 +152,7 @@ This endpoint retrieves a preview of a specific movie, including details such as
 
 ---
 
-### Endpoint: Get Top Roles for a Film
-
-- **URL:** `https://www.filmweb.pl/api/v1/film/{id}/top-roles`
-- **Method:** `GET`
-- **Headers:**
-  - `x-locale` (required): Specifies the language and regional settings. For example, `pl_PL` for Polish.
-- **Path Parameters:**
-  - `id` (required): The unique identifier of the movie for which the top roles are being requested.
-
-#### Description
-This endpoint retrieves the top roles for a specific movie, including details about the actors and their performance ratings.
-
-#### Response Description
-- The response is a list of objects, each representing a top role:
-  - `id` (integer): The unique identifier of the role.
-  - `count` (integer): The count of votes or mentions for this role.
-  - `person` (integer): The unique identifier of the person (actor) playing the role.
-  - `rate` (float): The rating of the actor's performance in the role.
-  - `profession` (string): The profession of the person (e.g., `actors`).
-
----
-
-### Endpoint: Get Film Counters
+#### Endpoint: Get Film Counters
 
 - **URL:** `https://www.filmweb.pl/api/v1/film/{id}/counters`
 - **Method:** `GET`
@@ -181,10 +161,10 @@ This endpoint retrieves the top roles for a specific movie, including details ab
 - **Path Parameters:**
   - `id` (required): The unique identifier of the movie for which the counters are being requested.
 
-#### Description
+##### Description
 This endpoint retrieves various counters for a specific movie, such as the number of awards, nominations, photos, posters, and more.
 
-#### Response Description
+##### Response Description
 - `awards` (integer): The number of awards won by the movie.
 - `nominations` (integer): The number of nominations the movie has received.
 - `photos` (integer): The number of photos available for the movie.
@@ -210,7 +190,7 @@ This endpoint retrieves various counters for a specific movie, such as the numbe
 
 ---
 
-### Endpoint: Get Episodes for a Serial
+#### Endpoint: Get Episodes for a Serial
 
 - **URL:** `https://www.filmweb.pl/api/v1/serial/{id}/episodes`
 - **Method:** `GET`
@@ -221,10 +201,10 @@ This endpoint retrieves various counters for a specific movie, such as the numbe
 - **Query Parameters:**
   - `loadDates` (optional, boolean): Whether to load airing dates for each episode. Default value is `false`.
 
-#### Description
+##### Description
 This endpoint retrieves the list of episodes for a specific serial. It includes details such as episode number, duration, and airing dates for different countries.
 
-#### Response Description
+##### Response Description
 - The response is a list of objects, each representing an episode:
   - `id` (integer): The unique identifier of the episode.
   - `episodeNumber` (integer): The number of the episode in the season.
@@ -233,14 +213,14 @@ This endpoint retrieves the list of episodes for a specific serial. It includes 
     - `airDateInt` (integer): The airing date in the format `YYYYMMDD`.
     - `country` (string): The country code for the airing date.
 
-#### Note
+##### Note
 - This endpoint only applies to serials. For other types, the response will be empty.
 - The endpoint may return an error if the number of episodes exceeds a certain limit.
 
 
 ---
 
-### Endpoint: Get Film Release Dates
+#### Endpoint: Get Film Release Dates
 
 - **URL:** `https://www.filmweb.pl/api/v1/film/{id}/dates`
 - **Method:** `GET`
@@ -249,10 +229,10 @@ This endpoint retrieves the list of episodes for a specific serial. It includes 
 - **Path Parameters:**
   - `id` (required): The unique identifier of the film for which the release dates are being requested.
 
-#### Description
+##### Description
 This endpoint retrieves various release dates for a specific film, including world release dates, public release dates, and the first airing date for serials.
 
-#### Response Description
+##### Response Description
 - `worldReleaseDate` (optional, object): Information about the initial world release date.
   - `dateInt` (integer): The release date in the format `YYYYMMDD`.
   - `country` (string): The country of the initial release.
@@ -270,14 +250,13 @@ This endpoint retrieves various release dates for a specific film, including wor
   - `airDateInt` (integer): The airing date in the format `YYYYMMDD`.
   - `country` (string): The country of the airing date.
 
-#### Note
+##### Note
 - This endpoint may return different types of dates depending on the type of entity (e.g., films vs. serials).
 - Some fields may be optional depending on the availability of data.  
 
+### Ratings
 
----
-
-### Endpoint: Get Film Ratings
+#### Endpoint: Get Film Ratings
 
 - **URL:** `https://www.filmweb.pl/api/v1/film/{id}/rating`
 - **Method:** `GET`
@@ -286,10 +265,10 @@ This endpoint retrieves various release dates for a specific film, including wor
 - **Path Parameters:**
   - `id` (required): The unique identifier of the film for which the ratings are being requested.
 
-#### Description
+##### Description
 This endpoint retrieves the ratings for a specific film, including the overall rating, the number of votes, and a breakdown of votes by rating.
 
-#### Response Description
+##### Response Description
 - `count` (integer): The total number of votes for the film.
 - `rate` (float): The average rating of the film.
 - `countWantToSee` (integer): The number of users who want to see the film.
@@ -297,7 +276,7 @@ This endpoint retrieves the ratings for a specific film, including the overall r
 
 ---
 
-### Endpoint: Get Critics' Ratings for a Film
+#### Endpoint: Get Critics' Ratings for a Film
 
 - **URL:** `https://www.filmweb.pl/api/v1/film/{id}/critics/rating`
 - **Method:** `GET`
@@ -306,9 +285,173 @@ This endpoint retrieves the ratings for a specific film, including the overall r
 - **Path Parameters:**
   - `id` (required): The unique identifier of the film for which the critics' ratings are being requested.
 
-#### Description
+##### Description
 This endpoint retrieves the critics' ratings for a specific film, including the number of critics and the average rating given by them.
 
-#### Response Description
+##### Response Description
 - `count` (integer): The total number of critics who rated the film.
 - `rate` (float): The average rating given by the critics.
+
+### Reviews
+
+TODO!
+
+### Roles, characters and persons
+
+#### Endpoint: Get Top Roles for a Film
+
+- **URL:** `https://www.filmweb.pl/api/v1/film/{id}/top-roles`
+- **Method:** `GET`
+- **Headers:**
+  - `x-locale` (required): Specifies the language and regional settings, e.g., `pl_PL` for Polish.
+- **Path Parameters:**
+  - `id` (required): Unique identifier of the film.
+
+##### Description
+This endpoint retrieves the top roles for a specific film, including information about the actors, their rating, and profession.
+
+##### Response Description
+- The response is a list of objects:
+  - `id` (integer): Unique identifier of the role.
+  - `count` (integer): Number of votes or mentions for this role.
+  - `person` (integer): Unique identifier of the actor.
+  - `rate` (float): Average rating of the actor in this role.
+  - `profession` (string): The actor's profession, e.g., `actors`.
+
+---
+
+#### Endpoint: Get Person Information
+
+- **URL:** `https://www.filmweb.pl/api/v1/person/{personId}/info`
+- **Method:** `GET`
+- **Headers:**
+  - `x-locale` (required): Specifies the language and regional settings, e.g., `pl_PL` for Polish.
+- **Path Parameters:**
+  - `personId` (required): Unique identifier of the person.
+
+##### Description
+
+This endpoint retrieves detailed information about a specific person, including their name, poster, and other relevant details.
+
+##### Response Description
+
+- `name` (string): The name of the person.
+- `poster` (object): Contains information about the person's poster.
+  - `origin` (string): The origin of the poster image.
+  - `author` (string): The author of the poster image.
+  - `path` (string): The path to the poster image.
+- `sex` (integer): The gender of the person (e.g., `2` for male).
+- `canVote` (boolean): Indicates if the person can be voted on.
+- `canHaveForum` (boolean): Indicates if the person can have a forum.
+
+---
+
+#### Endpoint: Get Roles of a Person
+
+- **URL:** `https://www.filmweb.pl/api/v1/person/{personId}/roles/actors`
+- **Method:** `GET`
+- **Headers:**
+  - `x-locale` (required): Specifies the language and regional settings, e.g., `pl_PL` for Polish.
+- **Path Parameters:**
+  - `personId` (required): Unique identifier of the actor.
+- **Query Parameters:**
+  - `all` (optional): Indicates whether to retrieve all roles. Default value is `false`.
+
+##### Description
+This endpoint retrieves the acting roles for a specific person. It provides information about the films or series the actor participated in, along with their respective details.
+
+##### Response Description
+- The response is a list of objects:
+  - `id` (integer): Unique identifier of the role.
+  - `film` (integer): Unique identifier of the film or series.
+  - `filmEntityName` (string): The type of the entity (`film` or `serial`).
+  - `titleYear` (integer): Release year of the film or series.
+  - `episodeCount` (optional, integer): Number of episodes if the entity is a series.
+  - `episodesStartYear` and `episodesEndYear` (optional, integer): Start and end year of the episodes.
+
+---
+
+#### Endpoint: Get Role Rating
+
+- **URL:** `https://www.filmweb.pl/api/v1/role/{roleId}/rating`
+- **Method:** `GET`
+- **Headers:**
+  - `x-locale` (required): Specifies the language and regional settings, e.g., `pl_PL` for Polish.
+- **Path Parameters:**
+  - `roleId` (required): Unique identifier of the role.
+
+##### Description
+This endpoint retrieves the rating for a specific role played by an actor.
+
+##### Response Description
+- `count` (integer): The total number of votes for the role.
+- `rate` (float): The average rating for the role.
+
+---
+
+#### Endpoint: Get Role Preview
+
+- **URL:** `https://www.filmweb.pl/api/v1/role/{roleId}/preview`
+- **Method:** `GET`
+- **Headers:**
+  - `x-locale` (required): Specifies the language and regional settings, e.g., `pl_PL` for Polish.
+- **Path Parameters:**
+  - `roleId` (required): Unique identifier of the role.
+
+##### Description
+This endpoint retrieves a preview of a specific role, including basic information like the film, the actor, and a representative photo.
+
+##### Response Description
+- `id` (integer): Unique identifier of the role.
+- `film` (integer): Unique identifier of the film.
+- `person` (integer): Unique identifier of the person.
+- `representingPhoto` (object): Information about the representative photo.
+  - `id` (integer): Unique identifier of the photo.
+  - `sourcePath` (string): The path to the photo.
+  - `fileExtension` (string): The file extension of the photo.
+- `profession` (string): The actor's profession, e.g., `actors`.
+
+---
+
+#### Endpoint: Get Characters for a Role
+
+- **URL:** `https://www.filmweb.pl/api/v1/role/{roleId}/characters`
+- **Method:** `GET`
+- **Headers:**
+  - `x-locale` (required): Specifies the language and regional settings, e.g., `pl_PL` for Polish.
+- **Path Parameters:**
+  - `roleId` (required): Unique identifier of the role.
+
+##### Description
+This endpoint retrieves the character(s) associated with a specific role played by an actor.
+
+##### Response Description
+- The response is a list of objects:
+  - `character` (integer): Unique identifier of the character.
+  - `names` (list of objects): List of character names.
+    - `id` (integer): Unique identifier of the character name.
+    - `name` (string): The character's name.
+    - `internationalAlphabet` (boolean): Indicates if the name uses the international alphabet.
+
+---
+
+#### Endpoint: Get Character Information
+
+- **URL:** `https://www.filmweb.pl/api/v1/character/{characterId}/info`
+- **Method:** `GET`
+- **Headers:**
+  - `x-locale` (required): Specifies the language and regional settings, e.g., `pl_PL` for Polish.
+- **Path Parameters:**
+  - `characterId` (required): Unique identifier of the character.
+
+##### Description
+This endpoint retrieves detailed information about a specific character.
+
+##### Response Description
+- `name` (string): The name of the character.
+- `poster` (object): Contains information about the character's poster.
+  - `path` (string): The path to the poster image.
+  
+Jeśli chcesz coś dodać lub zmienić w tej dokumentacji, daj mi znać!
+
+

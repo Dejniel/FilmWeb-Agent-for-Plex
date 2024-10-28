@@ -33,6 +33,10 @@ class FilmWebApi:
     RATING_URL = BASE_URL + "/film/%s/rating"
     CRITICS_RATING_URL = BASE_URL + "/film/%s/critics/rating"
     PREVIEW_URL = BASE_URL + "/film/%s/preview"
+    ROLES_URL = BASE_URL + "/film/%s/top-roles"
+    PERSON_URL = BASE_URL + "/person/%s/info"
+    CHARACTERS_URL = BASE_URL + "/role/%s/characters"
+    CHARACTER_URL = BASE_URL + "/character/%s/info"
 
     @staticmethod
     def get_api(url):
@@ -72,7 +76,23 @@ class FilmWebApi:
     @staticmethod
     def get_preview(film_id):
         return FilmWebApi.get_api(FilmWebApi.PREVIEW_URL % film_id)
-
+    
+    @staticmethod
+    def get_roles(film_id):
+        return FilmWebApi.get_api(FilmWebApi.ROLES_URL % film_id)
+        
+    @staticmethod
+    def get_person(actor_id):
+        return FilmWebApi.get_api(FilmWebApi.PERSON_URL % actor_id)
+        
+    @staticmethod
+    def get_characters(role_id):
+        return FilmWebApi.get_api(FilmWebApi.CHARACTERS_URL % role_id)
+        
+    @staticmethod
+    def get_character(character_id):
+        return FilmWebApi.get_api(FilmWebApi.CHARACTER_URL % character_id)
+        
 class FilmWebFilmAgent(Agent.Movies):
     name = 'FilmWeb.pl'
     model_name = 'v1.0.0'
@@ -247,6 +267,34 @@ class FilmWebMedia:
                     role.name = cast_member.get('name', '')
                     role.role = "Actor"
                     Log("Added cast member: %s as Actor" % cast_member['name'])
+        # Fetch and set additional roles
+        roles = FilmWebApi.get_roles(metadata.id)
+        if roles:
+            metadata.roles.clear()
+            for role in roles:
+                person = FilmWebApi.get_person(role["person"])
+                if not person: 
+                    continue
+                plex_role = metadata.roles.new()
+                poster = None
+                plex_role.name = person['name']
+
+                characters = FilmWebApi.get_characters(role["id"])
+                if characters:
+                     all_characters = []
+                     for character in characters:
+                         if 'character' not in character:
+                             all_characters += [v['name'] for v in character['names']]
+                             continue
+                         character_data = FilmWebApi.get_character(character['character'])
+                         all_characters += [character_data['name']]
+                         if not plex_role.photo and 'poster' in character_data and 'path' in character_data['poster']:
+                             plex_role.photo = "https://fwcdn.pl/ppo" + character_data['poster']['path'].replace('$', '1')
+                     plex_role.role = ' / '.join(all_characters)
+
+                if not plex_role.photo and 'poster' in person and 'path' in person['poster']:
+                    plex_role.photo = "https://fwcdn.pl/ppo" + person['poster']['path'].replace('$', '1')
+                Log("Added cast member: %s as %s (%s)" % (plex_role.name, plex_role.role, plex_role.photo))
 
             if 'coverPhoto' in preview_data and 'photo' in preview_data['coverPhoto']:
                 cover_photo = "https://fwcdn.pl/fph" + preview_data['coverPhoto']['photo'].get('sourcePath', '').replace('$', '1')
